@@ -55,9 +55,70 @@ averageSalary=60000&startDate=2024-01-01&endDate=2024-01-07
 ./gradlew test
 ```
 
+## 2. Настройка Docker
 
+Добавьте файл `Dockerfile` в корневую директорию проекта. Вот пример конфигурации для вашего Spring Boot приложения:
 
+```dockerfile
+# Используем официальный образ OpenJDK как базовый образ
+FROM openjdk:17-jdk-slim
 
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем JAR-файл в рабочую директорию
+COPY build/libs/CalculusNeoflex-0.0.1-SNAPSHOT.jar app.jar
+
+# Запускаем приложение
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Открываем порт, на котором будет работать приложение
+EXPOSE 8080
+```
+
+Добавьте также файл docker-compose.yml для упрощения запуска Docker-контейнера:
+```dockerfile
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+```
+
+### Команды для работы с Docker
+
+1. Сборка Docker-образа:
+```bash
+docker build -t vacation-calculator .
+```
+
+2. Запуск контейнера:
+```bash
+docker run -p 8080:8080 vacation-calculator
+```
+
+3. Запуск с использованием Docker Compose:
+```bash
+docker-compose up
+```
+
+### Остановка docker-контейнера
+
+1. Сначала найдите ID контейнера, который вы хотите завершить.
+```bash
+docker ps
+```
+
+2. После того как вы получите ID контейнера, завершите его с помощью команды docker stop:
+```bash
+docker stop <container_id>
+```
 
 ## Лиценция
 
