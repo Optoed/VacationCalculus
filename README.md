@@ -35,3 +35,30 @@
     ```bash
     ./gradlew bootRun
     ```
+
+## Примеры запросов
+
+### GET запрос
+
+GET /calculate?averageSalary=60000&vacationDays=14
+
+### POST запрос
+
+POST /calculate Content-Type: application/x-www-form-urlencoded
+
+averageSalary=60000&startDate=2024-01-01&endDate=2024-01-07
+
+## Тестирование
+
+Для запуска тестов используйте команду:
+```bash
+./gradlew test
+```
+
+
+
+
+
+## Лиценция
+
+Этот проект лицензирован под лицензией MIT.
