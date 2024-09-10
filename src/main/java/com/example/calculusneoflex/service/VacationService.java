@@ -14,6 +14,8 @@ import java.util.Set;
 @Service
 public class VacationService {
 
+    private final int DAYS_IN_YEAR = 365;
+
     private final Set<LocalDate> holidays;
 
     public VacationService() {
@@ -24,13 +26,13 @@ public class VacationService {
     }
 
     public VacationResponse calculateVacationPayment(VacationRequest request) {
-        double dailySalary = request.getAverageSalary() / 29.3; // 29.3 - стандарт
+        double dailySalary = request.getAverageSalary() / DAYS_IN_YEAR;
         double vacationPayment = dailySalary * request.getVacationDays();
         return new VacationResponse(vacationPayment);
     }
 
     public VacationResponse calculateVacationPayment(VacationRequest request, LocalDate startDate, LocalDate endDate) {
-        double dailySalary = request.getAverageSalary() / 30; // Используем 30 для упрощения
+        double dailySalary = request.getAverageSalary() / DAYS_IN_YEAR;
         int workingDays = calculateWorkingDays(startDate, endDate);
         double vacationPayment = dailySalary * workingDays;
         return new VacationResponse(vacationPayment);

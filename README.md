@@ -40,13 +40,13 @@
 
 ### GET запрос
 
-GET /calculate?averageSalary=60000&vacationDays=14
+GET /calculate?averageSalary=720000&vacationDays=14
 
 ### POST запрос
 
 POST /calculate Content-Type: application/x-www-form-urlencoded
 
-averageSalary=60000&startDate=2024-01-01&endDate=2024-01-07
+averageSalary=720000&startDate=2024-01-01&endDate=2024-01-07
 
 ## Тестирование
 
